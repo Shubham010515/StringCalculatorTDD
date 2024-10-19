@@ -7,7 +7,7 @@ public class StringCalculator {
             if (numbers.isEmpty()) {
                 return 0;
             } else {
-                return conversionToInt(numbers);
+                return  Integer.parseInt(numbers);
             }
         } else {
             String delimiter = ",";
@@ -16,16 +16,29 @@ public class StringCalculator {
                 numbers = numbers.substring(4);
             }
 
-            String[] numList = numberSplit(numbers, delimiter + "|\n");
+            String[] numList = numbers.split(delimiter + "|\n");
+
             return addition(numList);
         }
     }
+    private int addition(String[] numbers) {
+        StringBuilder negativeString = new StringBuilder();
+        int sumation = 0;
+        for (String num : numbers) {
+            if (Integer.parseInt(num) < 0) {
+                if (negativeString.toString().equals(""))
+                    negativeString = new StringBuilder(num);
+                else
+                    negativeString.append(",").append(num);
+            }
+            if (Integer.parseInt(num) < 1000)
+                sumation += Integer.parseInt(num);
+        }
 
-    private int conversionToInt(String number) {
-        return Integer.parseInt(number);
-    }
+        if (!negativeString.toString().equals("")) {
+            throw new IllegalArgumentException("Negative numbers are not allowed " + negativeString);
+        }
 
-    private String[] numberSplit(String numbers, String divider) {
-        return numbers.split(divider);
+        return sumation;
     }
 }
