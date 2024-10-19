@@ -7,7 +7,7 @@ public class StringCalculator {
             if (numbers.isEmpty()) {
                 return 0;
             } else {
-                return conversiontoInt(numbers);
+                return conversionToInt(numbers);
             }
         } else {
             String delimiter = ",";
@@ -19,5 +19,9 @@ public class StringCalculator {
             String[] numList = numberSplit(numbers, delimiter + "|\n");
             return addition(numList);
         }
+    }
+
+    private int conversionToInt(String number) {
+        return Integer.parseInt(number);
     }
 }
