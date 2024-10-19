@@ -24,4 +24,8 @@ public class StringCalculator {
     private int conversionToInt(String number) {
         return Integer.parseInt(number);
     }
+
+    private String[] numberSplit(String numbers, String divider) {
+        return numbers.split(divider);
+    }
 }
